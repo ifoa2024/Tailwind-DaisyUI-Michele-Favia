@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const RegisterForm = () => {
@@ -6,11 +6,15 @@ const RegisterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset, // Per resettare il modulo dopo l'invio
   } = useForm();
 
+  const [tasks, setTasks] = useState([]); // Stato per la lista delle attività
+
   const onSubmit = (data) => {
-    console.log("Form Data: ", data);
+    setTasks([...tasks, data.todo]); // Aggiungi il testo della To-Do List
     alert("Form inviato con successo!");
+    reset(); // Resetta il modulo dopo l'invio
   };
 
   return (
@@ -31,18 +35,24 @@ const RegisterForm = () => {
           {errors.nome && <p className="text-red-500 mt-1">{errors.nome.message}</p>}
         </div>
 
-        {/* Cognome */}
+        {/* Email */}
         <div>
-          <label className="block text-lg font-medium mb-1" htmlFor="cognome">
-            Cognome:
+          <label className="block text-lg font-medium mb-1" htmlFor="email">
+            Email:
           </label>
           <input
-            type="text"
-            id="cognome"
-            {...register("cognome", { required: "Il cognome è obbligatorio" })}
+            type="email"
+            id="email"
+            {...register("email", {
+              required: "L'email è obbligatoria",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Inserisci un'email valida",
+              },
+            })}
             className="input input-bordered w-full"
           />
-          {errors.cognome && <p className="text-red-500 mt-1">{errors.cognome.message}</p>}
+          {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
         </div>
 
         {/* To-Do List */}
@@ -69,6 +79,18 @@ const RegisterForm = () => {
           Invia
         </button>
       </form>
+
+      {/* Elenco delle attività */}
+      <div className="mt-8">
+        <h2 className="text-xl font-bold mb-4">Lista delle attività:</h2>
+        <ul className="list-disc pl-6">
+          {tasks.map((task, index) => (
+            <li key={index} className="mb-2">
+              {task}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,11 +1,17 @@
 import React from 'react';
-import RegisterForm from '../components/RegisterForm';
-import FormPage from './pages/FormPage';
+import Hero from '../components/Hero'; // Il componente per il titolo e il pulsante
+import CardCarousel from '../components/CardCarousel'; // Il componente per il carosello delle card
+
 const Home = () => {
   return (
     <div>
-      <h1 className="text-center text-3xl font-bold mt-4">Benvenuto nella Home</h1>
-      <RegisterForm />
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Card Carousel Section */}
+      <div className="mt-8">
+        <CardCarousel />
+      </div>
     </div>
   );
 };

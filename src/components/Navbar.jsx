@@ -1,23 +1,59 @@
 import React from 'react';
-import { MdOutlineDarkMode } from 'react-icons/md';
-
+import { NavLink } from 'react-router-dom'; 
+import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'; 
 const Navbar = ({ toggleTheme, isDarkMode }) => {
   return (
-    <nav className="navbar bg-base-100">
+    <nav className="navbar bg-base-100 shadow-md px-4">
+      {/* Logo */}
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">MyApp</a>
+        <NavLink to="/" className="btn btn-ghost normal-case text-xl">
+          MyApp
+        </NavLink>
       </div>
+
+      {/* Menu */}
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          <li><a>Home</a></li>
-          <li><a>About</a></li>
-          <li><a>Contact</a></li>
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "text-primary font-bold" : ""
+              }
+            >
+              Contact
+            </NavLink>
+          </li>
         </ul>
-        {/* Icona al posto del bottone */}
-        <MdOutlineDarkMode
-          className="text-2xl cursor-pointer"
-          onClick={toggleTheme}
-        />
+
+        {/* Icona tema scuro/chiaro */}
+        <button onClick={toggleTheme} className="ml-4 btn btn-ghost btn-circle">
+          {isDarkMode ? (
+            <MdDarkMode className="text-2xl" />
+          ) : (
+            <MdOutlineDarkMode className="text-2xl" />
+          )}
+        </button>
       </div>
     </nav>
   );
