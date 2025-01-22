@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Un sito realizzato in React con l'implementazione di Tailwind e Daisy UI.
+Il sito presenta una navbar con un bottone che permette all'user di cambiare il tema della pagina passando da tema chiaro a tema scuro.
+La pagina web è anche dotata di footer e caroselli dinamici con immagini generate randomicamente. 
