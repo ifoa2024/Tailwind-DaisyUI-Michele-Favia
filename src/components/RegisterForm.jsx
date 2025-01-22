@@ -1,6 +1,5 @@
-// src/components/RegisterForm.jsx
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import { useForm } from "react-hook-form";
 
 const RegisterForm = () => {
   const {
@@ -10,57 +9,67 @@ const RegisterForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log("Form Data: ", data);
+    alert("Form inviato con successo!");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto bg-white p-4 shadow-md rounded">
-      <div className="mb-4">
-        <label htmlFor="firstName" className="block text-sm font-medium">
-          Nome
-        </label>
-        <input
-          id="firstName"
-          type="text"
-          {...register('firstName', { required: 'Il nome è obbligatorio' })}
-          className={`mt-1 block w-full p-2 border ${errors.firstName ? 'border-red-500' : 'border-gray-300'} rounded`}
-        />
-        {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
-      </div>
+    <div className="container mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-4">Registrazione e To-Do List</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Nome */}
+        <div>
+          <label className="block text-lg font-medium mb-1" htmlFor="nome">
+            Nome:
+          </label>
+          <input
+            type="text"
+            id="nome"
+            {...register("nome", { required: "Il nome è obbligatorio" })}
+            className="input input-bordered w-full"
+          />
+          {errors.nome && <p className="text-red-500 mt-1">{errors.nome.message}</p>}
+        </div>
 
-      <div className="mb-4">
-        <label htmlFor="lastName" className="block text-sm font-medium">
-          Cognome
-        </label>
-        <input
-          id="lastName"
-          type="text"
-          {...register('lastName', { required: 'Il cognome è obbligatorio' })}
-          className={`mt-1 block w-full p-2 border ${errors.lastName ? 'border-red-500' : 'border-gray-300'} rounded`}
-        />
-        {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
-      </div>
+        {/* Cognome */}
+        <div>
+          <label className="block text-lg font-medium mb-1" htmlFor="cognome">
+            Cognome:
+          </label>
+          <input
+            type="text"
+            id="cognome"
+            {...register("cognome", { required: "Il cognome è obbligatorio" })}
+            className="input input-bordered w-full"
+          />
+          {errors.cognome && <p className="text-red-500 mt-1">{errors.cognome.message}</p>}
+        </div>
 
-      <div className="mb-4">
-        <label htmlFor="todo" className="block text-sm font-medium">
-          To-Do
-        </label>
-        <input
-          id="todo"
-          type="text"
-          {...register('todo', { minLength: { value: 10, message: 'La To-Do deve avere almeno 10 caratteri' } })}
-          className={`mt-1 block w-full p-2 border ${errors.todo ? 'border-red-500' : 'border-gray-300'} rounded`}
-        />
-        {errors.todo && <p className="text-red-500 text-sm">{errors.todo.message}</p>}
-      </div>
+        {/* To-Do List */}
+        <div>
+          <label className="block text-lg font-medium mb-1" htmlFor="todo">
+            To-Do List:
+          </label>
+          <textarea
+            id="todo"
+            {...register("todo", {
+              required: "La To-Do List è obbligatoria",
+              minLength: {
+                value: 10,
+                message: "La To-Do List deve contenere almeno 10 caratteri",
+              },
+            })}
+            className="textarea textarea-bordered w-full"
+          />
+          {errors.todo && <p className="text-red-500 mt-1">{errors.todo.message}</p>}
+        </div>
 
-      <button
-        type="submit"
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-      >
-        Invia
-      </button>
-    </form>
+        {/* Pulsante di invio */}
+        <button type="submit" className="btn btn-primary">
+          Invia
+        </button>
+      </form>
+    </div>
   );
 };
 
