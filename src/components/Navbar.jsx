@@ -1,22 +1,23 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({ toggleTheme, isDarkMode }) => {
   return (
-    <div className="navbar bg-base-100 shadow-lg">
-      <div className="navbar-start">
+    <nav className="navbar bg-base-100">
+      <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl">MyApp</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          <li><a>Home</a></li>
-          <li><a>About</a></li>
-          <li><a>Contact</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
+        {/* Add Dark Mode Toggle Button Here */}
+        <button className="btn btn-primary ml-4" onClick={toggleTheme}>
+          {isDarkMode ? 'Tema Chiaro' : 'Tema Scuro'}
+        </button>
       </div>
-      <div className="navbar-end">
-        <a className="btn btn-primary">Get Started</a>
-      </div>
-    </div>
+    </nav>
   );
 };
 

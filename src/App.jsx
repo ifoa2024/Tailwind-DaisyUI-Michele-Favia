@@ -5,18 +5,26 @@ import Hero from './components/Hero';
 import Footer from './components/Footer';
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark'); // Toggle theme
+  };
+
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // Fetch dei dati da JSONPlaceholder
+    // CHIAMATA FETCH JSON PLACEHOLDER
     fetch("https://jsonplaceholder.typicode.com/posts?_limit=3")
       .then((response) => response.json())
       .then((data) => setCards(data));
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
+    <div className="min-h-screen">
+      
+      <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Hero />
       <section className="py-16">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -26,8 +34,7 @@ function App() {
                 <h3 className="card-title">{card.title}</h3>
                 <p>{card.body}</p>
               </div>
-
-              {/* Carosello con DaisyUI */}
+              {/* CAROSELLO CON DAISY UI */}
               <div className="carousel w-full">
                 <div id={`slide1-${card.id}`} className="carousel-item relative w-full">
                   <img src={`https://picsum.photos/seed/${card.id}1/300/200`} alt="Random" className="w-full" />
