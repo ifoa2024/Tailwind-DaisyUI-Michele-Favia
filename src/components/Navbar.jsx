@@ -12,7 +12,6 @@ const Navbar = ({ toggleTheme, isDarkMode }) => {
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        {/* Add Dark Mode Toggle Button Here */}
         <button className="btn btn-primary ml-4" onClick={toggleTheme}>
           {isDarkMode ? 'Tema Chiaro' : 'Tema Scuro'}
         </button>

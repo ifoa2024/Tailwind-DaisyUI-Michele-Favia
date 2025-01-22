@@ -15,7 +15,7 @@ function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // CHIAMATA FETCH JSON PLACEHOLDER
+
     fetch("https://jsonplaceholder.typicode.com/posts?_limit=3")
       .then((response) => response.json())
       .then((data) => setCards(data));
@@ -34,7 +34,7 @@ function App() {
                 <h3 className="card-title">{card.title}</h3>
                 <p>{card.body}</p>
               </div>
-              {/* CAROSELLO CON DAISY UI */}
+              {/* CAROSELLO CON DAISY UI  */}
               <div className="carousel w-full">
                 <div id={`slide1-${card.id}`} className="carousel-item relative w-full">
                   <img src={`https://picsum.photos/seed/${card.id}1/300/200`} alt="Random" className="w-full" />
@@ -68,3 +68,7 @@ function App() {
 }
 
 export default App;
+
+
+
+
